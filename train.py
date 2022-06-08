@@ -186,7 +186,8 @@ class SequenceLightningModule(pl.LightningModule):
         self._state = state
         x, *w = self.decoder(x, state, *z)
         blah = 7
-        return x, y, *w
+        return x, y
+        # return x, y, *w
 
     @torch.inference_mode()
     def forward_recurrence(self, batch, k=1):
