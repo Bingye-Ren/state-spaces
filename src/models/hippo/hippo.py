@@ -235,7 +235,8 @@ def nplr(measure, N, rank=1, dtype=torch.float):
 
     # We require AP to be nearly skew-symmetric
     _A = AP + AP.transpose(-1, -2)
-    if (err := torch.sum((_A - _A[0,0]*torch.eye(N))**2) / N) > 1e-5: # if not torch.allclose(_A - _A[0,0]*torch.eye(N), torch.zeros(N, N), atol=1e-5):
+    err = torch.sum((_A - _A[0,0]*torch.eye(N))**2) / N
+    if err > 1e-5: # if not torch.allclose(_A - _A[0,0]*torch.eye(N), torch.zeros(N, N), atol=1e-5):
         print("WARNING: HiPPO matrix not skew symmetric", err)
 
 
@@ -258,7 +259,8 @@ def nplr(measure, N, rank=1, dtype=torch.float):
 
     _AP = V @ torch.diag_embed(w) @ V.conj().transpose(-1, -2)
     # assert torch.allclose(2*_AP.real, AP, atol=1e-5)
-    if ((err := torch.sum((2*_AP.real-AP)**2)/N) > 1e-5):
+    err = torch.sum((2*_AP.real-AP)**2)/N 
+    if (err > 1e-5):
         print("Warning: Diagonalization of A matrix not numerically precise - error", err)
     # print("check", V @ torch.diag_embed(w) @ V.conj().transpose(-1, -2))
 
