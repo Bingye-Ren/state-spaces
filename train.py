@@ -185,6 +185,7 @@ class SequenceLightningModule(pl.LightningModule):
         x, state = self.model(x, *w, state=self._state)
         self._state = state
         x, *w = self.decoder(x, state, *z)
+        blah = 7
         return x, y, *w
 
     @torch.inference_mode()
