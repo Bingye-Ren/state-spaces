@@ -491,7 +491,7 @@ class InformerSequenceDataset(SequenceDataset):
         x = torch.stack(x, dim=0)[:, ::resolution]
         y = torch.stack(y, dim=0)
         z = [torch.stack(e, dim=0)[:, ::resolution] for e in z]
-        return x, y, *z
+        return (x, y, *z)
 
     def setup(self):
         self.data_dir = self.data_dir or default_data_path / 'informer' / self._name_
