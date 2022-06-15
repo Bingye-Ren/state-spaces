@@ -1509,7 +1509,7 @@ class QuantizedAutoregressiveAudio(SequenceDataset):
             x = torch.stack(x, dim=0)[:, ::resolution]
             y = torch.stack(y, dim=0)[:, ::resolution]
             z = [torch.stack(e, dim=0)[:, ::resolution] for e in z]
-            return x, y, *z
+            return (x, y, *z)
 
         def collate_fn_2(batch, resolution=1):
             x, y, *z = zip(*batch)
