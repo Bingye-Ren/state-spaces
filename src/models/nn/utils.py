@@ -84,6 +84,6 @@ def Transpose(module_cls):
             if self.transposed: x = x.transpose(-1, -2)
             y, *z = super().forward(x, *args, **kwargs)
             if self.transposed: y = y.transpose(-1, -2)
-            return y, *z
+            return (y, *z)
     TransposedModule.__name__ = module_cls.__name__
     return TransposedModule
