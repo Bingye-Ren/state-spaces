@@ -349,4 +349,4 @@ class SpeechCommands09(AbstractAudioDataset):
         x, y, *z = item
         if self.dequantize:
             x = self.dequantizer(x).unsqueeze(1)
-        return x, y, *z
+        return (x, y, *z)
