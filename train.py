@@ -214,7 +214,7 @@ class SequenceLightningModule(pl.LightningModule):
 
             x_all.append(x_t)
             w_all.append(w_t)
-        return torch.stack(x_all), y, *[torch.stack(w_) for w_ in zip(*w_all)]
+        return (torch.stack(x_all), y, *[torch.stack(w_) for w_ in zip(*w_all)])
 
     def _shared_step(self, batch, batch_idx, prefix="train"):
 
