@@ -1001,7 +1001,7 @@ class HippoSSKernel(nn.Module):
                     A, _conj(B), _conj(C), log_dt, L=L,
                     trainable=trainable, lr=lr,
                 )
-            else: raise NotImplementedError(f"{mode=} is not valid")
+            else: raise NotImplementedError(f"mode={mode} is not valid")
 
     def forward(self, state=None, L=None):
         k, k_state = self.kernel(state=state, rate=self.rate, L=L)
